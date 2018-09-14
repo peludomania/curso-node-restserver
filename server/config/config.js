@@ -13,6 +13,16 @@ process.env.PORT = process.env.PORT || 3000;
 // ==========================================
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
+// ==========================================
+//  Expiración del token
+//  30 días
+// ==========================================
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+// ==========================================
+//  Firma para los token, se crea en heroku, explicado abajo
+// ==========================================
+process.env.SECRET_KEY = process.env.SECRET_KEY || 'secret';
 
 // ==========================================
 //  Base de datos

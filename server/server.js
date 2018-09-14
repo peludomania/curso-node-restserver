@@ -11,10 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-
-app.use( require('./controllers/mainController'));
-
-app.use( require('./controllers/userController'));
+//Enroutador
+app.use( require('./controllers/index'));
 
 mongoose.connect(process.env.URLDB, (err, res) => {
 
