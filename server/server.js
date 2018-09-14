@@ -3,6 +3,8 @@ require('./config/config');
 const express = require('express');
 const app = express();
 
+const mongoose = require('mongoose');
+
 const bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -10,44 +12,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.get('/', function (req, res) {
-    res.json('Hello World')
-});
+app.use( require('./controllers/mainController'));
 
+app.use( require('./controllers/userController'));
 
-app.get('/usuario', function (req, res) {
-    res.json('get Usuario')
-});
+mongoose.connect(process.env.URLDB, (err, res) => {
 
-app.post('/usuario', function (req, res) {
+    if ( err ) throw err;
 
-    let body = req.body;
+    console.log('Base de datos');
 
-    if ( undefined === body.nombre ) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        });
-    } else {
-        res.json({
-            user: body
-        });
-    }
-
-
-});
-
-app.put('/usuario/:id', function (req, res) {
-
-    let id = req.params.id;
-
-    res.json({
-        id
-    })
-});
-
-app.delete('/usuario', function (req, res) {
-    res.json('delete Usuario')
 });
 
 app.listen(process.env.PORT, () => {

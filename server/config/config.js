@@ -7,3 +7,22 @@
 // ==========================================
 
 process.env.PORT = process.env.PORT || 3000;
+
+// ==========================================
+//  Entorno. La variable NODE_ENV la proporciona Heroku
+// ==========================================
+process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
+
+// ==========================================
+//  Base de datos
+// ==========================================
+let urlDB;
+
+if ( 'dev' === process.env.NODE_ENV) {
+    urlDB = 'mongodb://localhost:27017/cafe';
+} else {
+    urlDB = 'mongodb://curso-node:abc123@ds257372.mlab.com:57372/cafe';
+}
+
+process.env.URLDB = urlDB;
