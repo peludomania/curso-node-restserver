@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../../models/user');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const _ = require('underscore');//El standard de uso de underscore es volcarlo en una constante solo con "_"
 
 const app = express();
@@ -40,7 +40,7 @@ app.post('/usuario', function (req, res) {
     let usuario = new User({
        name: body.name,
        email: body.email,
-       password: bcrypt.hashSync(body.password, 10),
+       password: body.password,//bcrypt.hashSync(body.password, 10),
         role: body.role
     });
 
