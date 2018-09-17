@@ -1,9 +1,9 @@
 const express = require('express');
-const User = require('../../models/user');
+const User = require('../models/user');
 //const bcrypt = require('bcrypt');
 const _ = require('underscore');//El standard de uso de underscore es volcarlo en una constante solo con "_"
 
-const { checkToken, checkAdminRole } = require('../../middlewares/authentication');
+const { checkToken, checkAdminRole } = require('../middlewares/authentication');
 const app = express();
 
 app.get('/usuario', checkToken ,(req, res) => {
